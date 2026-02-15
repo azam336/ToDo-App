@@ -1,0 +1,141 @@
+# Spec-Kit Configuration
+# Governs spec-driven development workflow
+
+version: "1.0"
+project:
+  name: "evolving-todo-system"
+  description: "Cloud-native Todo system evolving through 5 phases"
+  repository: "https://github.com/org/todo-system"
+  methodology: "spec-driven-development"
+
+# Spec-Driven Development Rules
+rules:
+  require_spec_before_code: true
+  require_task_breakdown: true
+  require_task_id_in_commits: true
+  require_constitution_mapping: true
+  require_approval_before_implement: true
+
+# Phase Definitions
+phases:
+  - id: "phase-1"
+    name: "CLI In-Memory"
+    status: "pending"
+    priority: 1
+    description: "Command-line todo application with in-memory storage"
+
+  - id: "phase-2"
+    name: "Full Stack Web"
+    status: "pending"
+    priority: 2
+    description: "React frontend + Node.js API + PostgreSQL"
+    dependencies: ["phase-1"]
+
+  - id: "phase-3"
+    name: "AI Chatbot"
+    status: "pending"
+    priority: 3
+    description: "Natural language interface with MCP tools"
+    dependencies: ["phase-2"]
+
+  - id: "phase-4"
+    name: "Local Kubernetes"
+    status: "pending"
+    priority: 4
+    description: "Kubernetes deployment with Helm charts"
+    dependencies: ["phase-2"]
+
+  - id: "phase-5"
+    name: "Cloud Native"
+    status: "pending"
+    priority: 5
+    description: "Event-driven architecture with Kafka + Dapr"
+    dependencies: ["phase-4"]
+
+# Directory Structure
+directories:
+  constitution: "/Constitution.md"
+  specs: "/specs"
+  features: "/specs/features"
+  architecture: "/specs/architecture"
+  tasks: "/specs/tasks"
+  apps: "/apps"
+  packages: "/packages"
+  infra: "/infra"
+
+# Naming Conventions
+naming:
+  feature_spec: "FEAT-{phase}-{number}-{slug}.md"
+  task: "TASK-{feature}-{number}.md"
+  architecture: "ARCH-{number}-{slug}.md"
+
+# Technology Stack
+stack:
+  language: "TypeScript"
+  runtime: "Node.js 20 LTS"
+  package_manager: "pnpm"
+  monorepo_tool: "Turborepo"
+
+  frontend:
+    framework: "React 18"
+    meta_framework: "Next.js 14"
+    styling: "Tailwind CSS"
+    state: "Zustand"
+
+  backend:
+    framework: "Fastify"
+    orm: "Drizzle ORM"
+    validation: "Zod"
+
+  database:
+    primary: "PostgreSQL 16"
+    cache: "Redis"
+
+  ai:
+    sdk: "Anthropic SDK"
+    protocol: "MCP (Model Context Protocol)"
+
+  infrastructure:
+    containers: "Docker"
+    orchestration: "Kubernetes"
+    cloud: "AWS/GCP"
+    events: "Apache Kafka"
+    sidecar: "Dapr"
+    iac: "Terraform"
+
+# Quality Gates
+quality:
+  testing:
+    unit: true
+    integration: true
+    e2e: true
+    coverage_threshold: 80
+
+  code:
+    linter: "ESLint"
+    formatter: "Prettier"
+    type_check: "TypeScript strict"
+
+  security:
+    dependency_scan: true
+    sast: true
+    secrets_scan: true
+
+# Approval Workflow
+approvals:
+  constitution_changes: ["architect", "lead"]
+  feature_specs: ["architect"]
+  task_breakdown: ["lead"]
+  implementation: ["reviewer"]
+
+# Traceability
+traceability:
+  commit_format: "[{task-id}] {type}: {description}"
+  types:
+    - feat
+    - fix
+    - docs
+    - refactor
+    - test
+    - chore
+    - infra

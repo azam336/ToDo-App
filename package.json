@@ -1,0 +1,28 @@
+{
+  "name": "evolving-todo-system",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Cloud-native Todo system evolving through 5 phases",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/org/todo-system"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.0",
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0"
+  }
+}
