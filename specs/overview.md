@@ -140,12 +140,13 @@ Build a production-ready todo system that serves as:
 ### Feature Specifications
 | ID | Phase | Feature | Status |
 |----|-------|---------|--------|
-| FEAT-1-001 | I | CLI Todo CRUD | Pending |
-| FEAT-1-002 | I | CLI List & Filter | Pending |
-| FEAT-2-001 | II | Web UI Components | Pending |
-| FEAT-2-002 | II | REST API | Pending |
-| FEAT-2-003 | II | Database Schema | Pending |
-| FEAT-2-004 | II | Authentication | Pending |
+| FEAT-1-001 | I | CLI Todo CRUD | Complete |
+| FEAT-1-002 | I | CLI List & Filter | Complete |
+| FEAT-1-003 | I | CLI Interface | Complete |
+| FEAT-2-001 | II | Web UI Components | Draft |
+| FEAT-2-002 | II | REST API | Draft |
+| FEAT-2-003 | II | Database Schema | Draft |
+| FEAT-2-004 | II | Authentication | Draft |
 | FEAT-3-001 | III | MCP Server | Pending |
 | FEAT-3-002 | III | Chat Interface | Pending |
 | FEAT-4-001 | IV | Docker Containers | Pending |
@@ -157,8 +158,8 @@ Build a production-ready todo system that serves as:
 ### Architecture Documents
 | ID | Topic | Status |
 |----|-------|--------|
-| ARCH-001 | System Context | Pending |
-| ARCH-002 | Domain Model | Pending |
+| ARCH-001 | Phase I CLI Architecture | Complete |
+| ARCH-002 | Phase II Full Stack Architecture | Draft |
 | ARCH-003 | API Design | Pending |
 | ARCH-004 | Data Architecture | Pending |
 | ARCH-005 | Event Architecture | Pending |

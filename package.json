@@ -18,7 +18,14 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "typecheck": "turbo run typecheck",
-    "clean": "turbo run clean && rm -rf node_modules"
+    "clean": "turbo run clean && rm -rf node_modules",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "db:generate": "pnpm --filter @todo/db db:generate",
+    "db:migrate": "pnpm --filter @todo/db db:migrate",
+    "db:push": "pnpm --filter @todo/db db:push",
+    "db:seed": "pnpm --filter @todo/db db:seed"
   },
   "devDependencies": {
     "prettier": "^3.2.0",

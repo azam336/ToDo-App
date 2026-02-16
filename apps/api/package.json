@@ -1,0 +1,39 @@
+{
+  "name": "@todo/api",
+  "version": "0.0.1",
+  "description": "Fastify REST API for the Todo system",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist coverage"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^9.2.0",
+    "@fastify/cors": "^8.4.0",
+    "@fastify/jwt": "^8.0.0",
+    "@fastify/rate-limit": "^9.0.0",
+    "@fastify/swagger": "^8.12.0",
+    "@fastify/swagger-ui": "^2.0.0",
+    "@todo/core": "workspace:*",
+    "@todo/db": "workspace:*",
+    "@todo/shared": "workspace:*",
+    "argon2": "^0.31.0",
+    "fastify": "^4.25.0",
+    "nanoid": "^5.0.7",
+    "pino": "^8.17.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "pino-pretty": "^10.3.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}
