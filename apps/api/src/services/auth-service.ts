@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid';
+import { randomUUID } from 'node:crypto';
 import { UserRepository, SessionRepository } from '@todo/db';
 import { hashPassword, verifyPassword } from '../utils/password.js';
 import { jwtConfig } from '../config/index.js';
@@ -149,7 +149,7 @@ export class AuthService {
   }
 
   private async generateTokens(userId: string, email: string): Promise<TokenResult> {
-    const jti = nanoid();
+    const jti = randomUUID();
 
     // Create access token
     const accessToken = this.jwt.sign(
@@ -162,7 +162,7 @@ export class AuthService {
     );
 
     // Create refresh token session
-    const sessionId = nanoid();
+    const sessionId = randomUUID();
     const expiresAt = new Date(
       Date.now() + jwtConfig.refresh.expiresInDays * 24 * 60 * 60 * 1000
     );

@@ -1,11 +1,12 @@
 import argon2 from 'argon2';
 
 // OWASP recommended parameters for Argon2id
-const ARGON2_OPTIONS: argon2.Options = {
+const ARGON2_OPTIONS = {
   type: argon2.argon2id,
   memoryCost: 65536, // 64 MB
   timeCost: 3, // 3 iterations
   parallelism: 4, // 4 parallel threads
+  raw: false as const,
 };
 
 export async function hashPassword(password: string): Promise<string> {

@@ -14,7 +14,7 @@ export interface TodoFilters {
 export function useTodos(filters?: TodoFilters) {
   return useQuery({
     queryKey: ['todos', filters],
-    queryFn: () => api.getTodos(filters),
+    queryFn: () => api.getTodos(filters as Record<string, string | number | undefined>),
   });
 }
 
@@ -30,7 +30,7 @@ export function useCreateTodo() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: api.createTodo.bind(api),
+    mutationFn: (data: Parameters<typeof api.createTodo>[0]) => api.createTodo(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['todos'] });
     },
@@ -54,7 +54,7 @@ export function useDeleteTodo() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: api.deleteTodo.bind(api),
+    mutationFn: (id: string) => api.deleteTodo(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['todos'] });
     },
@@ -65,7 +65,7 @@ export function useCompleteTodo() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: api.completeTodo.bind(api),
+    mutationFn: (id: string) => api.completeTodo(id),
     onSuccess: (_, id) => {
       queryClient.invalidateQueries({ queryKey: ['todos'] });
       queryClient.invalidateQueries({ queryKey: ['todos', id] });
@@ -77,7 +77,7 @@ export function useUncompleteTodo() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: api.uncompleteTodo.bind(api),
+    mutationFn: (id: string) => api.uncompleteTodo(id),
     onSuccess: (_, id) => {
       queryClient.invalidateQueries({ queryKey: ['todos'] });
       queryClient.invalidateQueries({ queryKey: ['todos', id] });

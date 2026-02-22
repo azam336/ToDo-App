@@ -1,26 +1,29 @@
-import Fastify from 'fastify';
+import Fastify, { type FastifyInstance } from 'fastify';
 import { nanoid } from 'nanoid';
 import { config } from './config/index.js';
 import { registerPlugins } from './plugins/index.js';
 import { registerRoutes } from './routes/index.js';
 import { closeDatabaseConnection } from '@todo/db';
 
-export async function buildServer() {
-  const server = Fastify({
-    logger: {
-      level: config.LOG_LEVEL,
-      transport:
-        config.NODE_ENV === 'development'
-          ? {
-              target: 'pino-pretty',
-              options: {
-                colorize: true,
-                translateTime: 'HH:MM:ss Z',
-                ignore: 'pid,hostname',
-              },
-            }
-          : undefined,
-    },
+export async function buildServer(): Promise<FastifyInstance> {
+  // Build logger config without conditional undefined (exactOptionalPropertyTypes)
+  const loggerConfig = config.NODE_ENV === 'development'
+    ? {
+        level: config.LOG_LEVEL,
+        transport: {
+          target: 'pino-pretty',
+          options: {
+            colorize: true,
+            translateTime: 'HH:MM:ss Z',
+            ignore: 'pid,hostname',
+          },
+        },
+      }
+    : { level: config.LOG_LEVEL };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const server: FastifyInstance = Fastify({
+    logger: loggerConfig as any,
     genReqId: () => `req_${nanoid(10)}`,
   });
 

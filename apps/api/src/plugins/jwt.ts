@@ -13,6 +13,10 @@ export async function registerJwt(server: FastifyInstance): Promise<void> {
     sign: {
       expiresIn: jwtConfig.access.expiresIn,
     },
+    formatUser: (payload: { sub: string; email: string }) => ({
+      id: payload.sub,
+      email: payload.email,
+    }),
   });
 
   // Add authenticate decorator

@@ -77,13 +77,15 @@ export async function createTodo(server: FastifyInstance): Promise<void> {
 
       const repository = new PostgresTodoRepository(userId);
 
-      const todo = await repository.create({
+      const input: Parameters<typeof repository.create>[0] = {
         title: parsed.data.title,
-        description: parsed.data.description,
-        priority: parsed.data.priority,
-        dueDate: parsed.data.dueDate ? new Date(parsed.data.dueDate) : undefined,
-        tags: parsed.data.tags,
-      });
+      };
+      if (parsed.data.description !== undefined) input.description = parsed.data.description;
+      if (parsed.data.priority !== undefined) input.priority = parsed.data.priority;
+      if (parsed.data.dueDate) input.dueDate = new Date(parsed.data.dueDate);
+      if (parsed.data.tags !== undefined) input.tags = parsed.data.tags;
+
+      const todo = await repository.create(input);
 
       return reply.status(201).send({
         data: {

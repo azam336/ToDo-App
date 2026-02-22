@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTodos, useCreateTodo, useCompleteTodo, useDeleteTodo } from '@/hooks/use-todos';
+import { useTodos, useCreateTodo, useCompleteTodo, useUncompleteTodo, useDeleteTodo } from '@/hooks/use-todos';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,6 +13,7 @@ export default function DashboardPage() {
   const { data, isLoading, error } = useTodos({ status: filter });
   const createTodo = useCreateTodo();
   const completeTodo = useCompleteTodo();
+  const uncompleteTodo = useUncompleteTodo();
   const deleteTodo = useDeleteTodo();
 
   const handleCreateTodo = async (e: React.FormEvent) => {
@@ -30,7 +31,7 @@ export default function DashboardPage() {
   const handleToggleComplete = async (id: string, currentStatus: string) => {
     try {
       if (currentStatus === 'completed') {
-        // Would need useUncompleteTodo hook
+        await uncompleteTodo.mutateAsync(id);
       } else {
         await completeTodo.mutateAsync(id);
       }
